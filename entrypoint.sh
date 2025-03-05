@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Install additional software if specified via the environment variable
+# Install any extra software defined in the EXTRA_SOFTWARE environment variable
 if [ -n "$EXTRA_SOFTWARE" ]; then
-    apt-get update && apt-get install -y $EXTRA_SOFTWARE
+    echo "Installing the following packages: $EXTRA_SOFTWARE"
+    apt-get update && apt-get install -y $(echo $EXTRA_SOFTWARE | tr " " "\n")
 fi
-
+    
 # Execute the PowerShell script from the mounted /scripts directory
 pwsh -File /scripts/DockerTest.ps1
 
