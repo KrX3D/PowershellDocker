@@ -1,0 +1,17 @@
+FROM mcr.microsoft.com/powershell:latest
+
+# Disable PowerShell telemetry
+ENV POWERSHELL_TELEMETRY_OPTOUT=1
+
+# Install additional dependencies if needed (e.g., Python)
+RUN apt-get update && apt-get install -y python3
+
+# Set working directory
+WORKDIR /scripts
+
+# Copy the entrypoint script into the container
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Set the entrypoint to your script
+ENTRYPOINT ["/entrypoint.sh"]
