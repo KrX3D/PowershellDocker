@@ -3,6 +3,12 @@ FROM mcr.microsoft.com/powershell:latest
 # Disable PowerShell telemetry
 ENV POWERSHELL_TELEMETRY_OPTOUT=1
 
+# Install required tools for apt-get
+RUN apt-get update && apt-get install -y \
+    apt-utils \
+    gnupg \
+    lsb-release
+
 # Copy the extra packages file into the image
 COPY extra-packages.txt /tmp/extra-packages.txt
 
