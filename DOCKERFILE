@@ -12,20 +12,19 @@ RUN apt-get update && apt-get install -y \
 # Copy the extra packages file into the image
 COPY extra-packages.txt /tmp/extra-packages.txt
 
-# Install extra packages from extra-packages.txt if the file is not empty
+# Install extra packages if the file is not empty
 RUN if [ -s /tmp/extra-packages.txt ]; then \
-      echo "The following packages are listed in extra-packages.txt:" && \
-      cat /tmp/extra-packages.txt && \
       apt-get update && xargs apt-get install -y < /tmp/extra-packages.txt; \
-    else \
-      echo "No packages listed in extra-packages.txt"; \
     fi
 
 # Set the working directory for your scripts
 WORKDIR /scripts
 
-# Copy the entrypoint script
+# Copy the entrypoint script and default PowerShell script
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY DockerDefault.ps1 /scripts/DockerDefault.ps1
+
+# Ensure both scripts are executable
+RUN chmod +x /entrypoint.sh /scripts/DockerDefault.ps1
 
 ENTRYPOINT ["/entrypoint.sh"]
