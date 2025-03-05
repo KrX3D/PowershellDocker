@@ -33,6 +33,8 @@ if [ -n "$EXTRA_SOFTWARE" ]; then
 
     # Install the packages listed in EXTRA_SOFTWARE
     for package in $(echo $EXTRA_SOFTWARE | tr " " "\n"); do
+        echo "##########################"
+        echo "##########################"
         echo "Attempting to install package: $package"
         
         # Try installing the package
