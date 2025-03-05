@@ -11,6 +11,9 @@ fi
 
 # Install any extra software defined in the EXTRA_SOFTWARE environment variable
 if [ -n "$EXTRA_SOFTWARE" ]; then
+    # Remove any extra quotes from the package names
+    EXTRA_SOFTWARE=$(echo $EXTRA_SOFTWARE | tr -d '"')
+    
     echo "Installing the following packages: $EXTRA_SOFTWARE"
 
     # Ensure package repositories are up-to-date
