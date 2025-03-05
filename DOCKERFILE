@@ -22,9 +22,9 @@ WORKDIR /scripts
 
 # Copy the entrypoint script and default PowerShell script
 COPY entrypoint.sh /entrypoint.sh
-COPY DockerDefault.ps1 /scripts/DockerDefault.ps1
+COPY DockerDefault.ps1 /DockerDefault.ps1
 
 # Ensure both scripts are executable
-RUN chmod +x /entrypoint.sh /scripts/DockerDefault.ps1
+RUN chmod +x /entrypoint.sh /DockerDefault.ps1
 
 ENTRYPOINT ["/entrypoint.sh"]
