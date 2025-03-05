@@ -6,7 +6,7 @@ if [ -n "$EXTRA_SOFTWARE" ]; then
 fi
 
 # Execute the PowerShell script from the mounted /scripts directory
-pwsh -File /scripts/your-script.ps1
+pwsh -File /scripts/DockerTest.ps1
 
 # Exit the container when done
 exit 0
