@@ -1,11 +1,10 @@
-version: "3.8"
 services:
   powershell_container:
-    image: KrX3D/PowershellDocker:latest
+    image: ghcr.io/krx3d/powershelldocker:latest
     container_name: powershell_container
     environment:
       - POWERSHELL_TELEMETRY_OPTOUT=1
-      - EXTRA_SOFTWARE="python3 curl"   # Space-separated list of packages
+      - EXTRA_SOFTWARE="python3"  # Add extra software if needed
     volumes:
       - /mnt/user/powershell-scripts:/scripts
     restart: "no"
