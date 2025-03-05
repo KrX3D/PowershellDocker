@@ -14,11 +14,16 @@ COPY extra-packages.txt /tmp/extra-packages.txt
 
 # Install extra packages from extra-packages.txt if the file is not empty
 RUN if [ -s /tmp/extra-packages.txt ]; then \
+      echo "The following packages are listed in extra-packages.txt:" && \
+      cat /tmp/extra-packages.txt && \
       apt-get update && xargs apt-get install -y < /tmp/extra-packages.txt; \
+    else \
+      echo "No packages listed in extra-packages.txt"; \
     fi
 
 # Install any extra software defined in the EXTRA_SOFTWARE environment variable
 RUN if [ -n "$EXTRA_SOFTWARE" ]; then \
+      echo "Installing the following packages: $EXTRA_SOFTWARE" && \
       apt-get update && apt-get install -y $(echo $EXTRA_SOFTWARE | tr " " "\n"); \
     fi
 
