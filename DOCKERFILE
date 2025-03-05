@@ -12,9 +12,14 @@ RUN apt-get update && apt-get install -y \
 # Copy the extra packages file into the image
 COPY extra-packages.txt /tmp/extra-packages.txt
 
-# Install extra packages if the file is not empty
+# Install extra packages from extra-packages.txt if the file is not empty
 RUN if [ -s /tmp/extra-packages.txt ]; then \
       apt-get update && xargs apt-get install -y < /tmp/extra-packages.txt; \
+    fi
+
+# Install any extra software defined in the EXTRA_SOFTWARE environment variable
+RUN if [ -n "$EXTRA_SOFTWARE" ]; then \
+      apt-get update && apt-get install -y $(echo $EXTRA_SOFTWARE | tr " " "\n"); \
     fi
 
 # Set the working directory for your scripts
