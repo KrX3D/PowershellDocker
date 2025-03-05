@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   powershell_container:
-    image: yourgithubusername/yourrepository:latest
+    image: KrX3D/PowershellDocker:latest
     container_name: powershell_container
     environment:
       - POWERSHELL_TELEMETRY_OPTOUT=1
