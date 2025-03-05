@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  powershell_container:
+    image: yourgithubusername/yourrepository:latest
+    container_name: powershell_container
+    environment:
+      - POWERSHELL_TELEMETRY_OPTOUT=1
+      - EXTRA_SOFTWARE="python3 curl"   # Space-separated list of packages
+    volumes:
+      - /mnt/user/powershell-scripts:/scripts
+    restart: "no"
