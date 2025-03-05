@@ -48,6 +48,9 @@ ls -alh /scripts/
 
 # Check if a specific PowerShell script file is provided, else use DockerDefault.ps1
 if [ -n "$SCRIPT_FILE" ]; then
+    # Remove any quotes around SCRIPT_FILE variable
+    SCRIPT_FILE=$(echo $SCRIPT_FILE | tr -d '"')
+    
     echo "Executing PowerShell script: $SCRIPT_FILE"
     pwsh -File /scripts/$SCRIPT_FILE
 else
