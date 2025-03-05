@@ -42,12 +42,25 @@ else
     echo "No extra software specified in the EXTRA_SOFTWARE environment variable."
 fi
 
+# Check the contents of /scripts and verify DockerDefault.ps1
+echo "Listing contents of /scripts folder:"
+ls -l /scripts
+
 # Check if a specific PowerShell script file is provided, else use DockerDefault.ps1
 if [ -n "$SCRIPT_FILE" ]; then
     echo "Executing PowerShell script: $SCRIPT_FILE"
     pwsh -File /scripts/$SCRIPT_FILE
 else
     echo "No script specified. Executing default script: DockerDefault.ps1"
+    
+    # Check if DockerDefault.ps1 exists
+    echo "Checking if DockerDefault.ps1 exists..."
+    if [ -f /scripts/DockerDefault.ps1 ]; then
+        echo "DockerDefault.ps1 exists."
+    else
+        echo "DockerDefault.ps1 not found."
+    fi
+    
     pwsh -File /scripts/DockerDefault.ps1
 fi
 
