@@ -5,6 +5,10 @@ on:
   push:
     branches: [ main ]
     tags: [ 'v*.*.*' ]
+    paths-ignore:
+      - 'LICENSE'
+      - 'README.md'
+      - 'docker-compose.yml'
 
 env:
   REGISTRY: ghcr.io
