@@ -87,6 +87,7 @@ else
     echo "Network connection to 8.8.8.8 failed!"
 fi
 
+
 # Test DNS resolution (e.g., google.com)
 echo "Testing DNS resolution for google.com..."
 ping -c 4 google.com > /dev/null 2>&1
