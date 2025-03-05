@@ -8,15 +8,43 @@ echo "Fetching container IP address..."
 CONTAINER_IP=$(hostname -I | awk '{print $1}')
 echo "Container IP address: $CONTAINER_IP"
 
-# Check if the container can reach a common external address (e.g., Google's DNS server)
-echo "Testing network connection..."
+# Check the container's routing table
+echo "##########################"
+echo "Fetching routing table..."
+ip route
+
+# Check if the container can reach the gateway
+GATEWAY_IP=$(ip route | grep default | awk '{print $3}')
+echo "Testing connection to the gateway ($GATEWAY_IP)..."
+ping -c 4 $GATEWAY_IP > /dev/null 2>&1
+
+if [ $? -eq 0 ]; then
+    echo "Gateway ($GATEWAY_IP) is reachable."
+else
+    echo "Gateway ($GATEWAY_IP) is not reachable."
+fi
+
+# Test if the container can reach an external IP (e.g., Google's DNS server)
+echo "Testing network connection to external IP (8.8.8.8)..."
 ping -c 4 8.8.8.8 > /dev/null 2>&1
 
 if [ $? -eq 0 ]; then
-    echo "Network connection is working!"
+    echo "Network connection to 8.8.8.8 is working!"
 else
-    echo "Network connection failed!"
-    exit 1
+    echo "Network connection to 8.8.8.8 failed!"
+fi
+
+# Test DNS resolution (e.g., google.com)
+echo "Testing DNS resolution for google.com..."
+ping -c 4 google.com > /dev/null 2>&1
+
+if [ $? -eq 0 ]; then
+    echo "DNS resolution is working!"
+else
+    echo "DNS resolution failed!"
+    echo "Checking DNS configuration in /etc/resolv.conf"
+    cat /etc/resolv.conf
+    echo "You may need to configure DNS manually."
 fi
 
 # Check if apt-get is available
