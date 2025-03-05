@@ -4,7 +4,8 @@ services:
     container_name: powershell_container
     environment:
       - POWERSHELL_TELEMETRY_OPTOUT=1
-      - EXTRA_SOFTWARE="python3"  # Add extra software if needed
+      - EXTRA_SOFTWARE="git curl" #Optional Software to be installed
+      - SCRIPT_FILE="CustomScript.ps1"  # This will override the default DockerDefault.ps1 script to be executed
     volumes:
       - /mnt/user/powershell-scripts:/scripts
     restart: "no"
