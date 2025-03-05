@@ -21,12 +21,6 @@ RUN if [ -s /tmp/extra-packages.txt ]; then \
       echo "No packages listed in extra-packages.txt"; \
     fi
 
-# Install any extra software defined in the EXTRA_SOFTWARE environment variable
-RUN if [ -n "$EXTRA_SOFTWARE" ]; then \
-      echo "Installing the following packages: $EXTRA_SOFTWARE" && \
-      apt-get update && apt-get install -y $(echo $EXTRA_SOFTWARE | tr " " "\n"); \
-    fi
-
 # Set the working directory for your scripts
 WORKDIR /scripts
 
