@@ -43,8 +43,8 @@ else
 fi
 
 # Check the contents of /scripts and verify DockerDefault.ps1
-echo "Listing contents of /scripts folder:"
-ls -l /scripts
+echo "Listing all files in /scripts directory:"
+ls -alh /scripts/
 
 # Check if a specific PowerShell script file is provided, else use DockerDefault.ps1
 if [ -n "$SCRIPT_FILE" ]; then
