@@ -18,5 +18,14 @@ while ($true) {
     # Increment the counter
     $counter++
 
+    # Exit after 10 minutes (120 cycles of 5 seconds)
+    if ($counter -gt 120) {
+        Write-Output "10 minutes have passed. Exiting the script and container."
+        break
+    }
+
     Start-Sleep -Seconds 5
 }
+
+# Optional: If you want to explicitly exit the PowerShell process
+exit
