@@ -58,13 +58,13 @@ else
     
     # Check if DockerDefault.ps1 exists
     echo "Checking if DockerDefault.ps1 exists..."
-    if [ -f /scripts/DockerDefault.ps1 ]; then
+    if [ -f /DockerDefault.ps1 ]; then
         echo "DockerDefault.ps1 exists."
     else
         echo "DockerDefault.ps1 not found."
     fi
     
-    pwsh -File /scripts/DockerDefault.ps1
+    pwsh -File /DockerDefault.ps1
 fi
 
 # Exit the container when done
