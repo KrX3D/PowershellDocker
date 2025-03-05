@@ -42,9 +42,14 @@ else
     echo "No extra software specified in the EXTRA_SOFTWARE environment variable."
 fi
 
-# Execute the PowerShell script from the mounted /scripts directory
-echo "Executing PowerShell script..."
-pwsh -File /scripts/DockerTest.ps1
+# Check if a specific PowerShell script file is provided, else use DockerDefault.ps1
+if [ -n "$SCRIPT_FILE" ]; then
+    echo "Executing PowerShell script: $SCRIPT_FILE"
+    pwsh -File /scripts/$SCRIPT_FILE
+else
+    echo "No script specified. Executing default script: DockerDefault.ps1"
+    pwsh -File /scripts/DockerDefault.ps1
+fi
 
 # Exit the container when done
 echo "Exiting the container."
