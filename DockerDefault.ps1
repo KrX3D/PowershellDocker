@@ -10,10 +10,13 @@ while ($true) {
     $currentTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $uptime = (Get-Date) - $startTime
 
-    # Output results
-    Write-Output "Hello! The current time is: $currentTime"
-    Write-Output "Container uptime: $($uptime.Hours) hours, $($uptime.Minutes) minutes, $($uptime.Seconds) seconds."
-    Write-Output "Message count: $counter"
+    # Output results with clear separation
+    Write-Output "------------------------------"
+    Write-Output "Loop #$counter"
+    Write-Output "Current Time: $currentTime"
+    Write-Output "Container Uptime: $($uptime.Hours) hours, $($uptime.Minutes) minutes, $($uptime.Seconds) seconds."
+    Write-Output "Message Count: $counter"
+    Write-Output "------------------------------"
 
     # Increment the counter
     $counter++
