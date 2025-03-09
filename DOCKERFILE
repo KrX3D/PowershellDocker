@@ -9,6 +9,10 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     lsb-release
 
+# Install PowerShell module PSWSMan and WSMan
+RUN pwsh -Command 'Install-Module -Name PSWSMan -Force -SkipPublisherCheck' 
+RUN pwsh -Command 'Install-WSMan'
+
 # Copy the extra packages file into the image
 COPY extra-packages.txt /tmp/extra-packages.txt
 
