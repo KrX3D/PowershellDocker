@@ -22,7 +22,7 @@ while ($true) {
     $counter++
 
     # Exit after 10 minutes (120 cycles of 5 seconds)
-    if ($counter -gt 120) {
+    if ($counter -gt 240) {
         Write-Output "10 minutes have passed. Exiting the script and container."
         break
     }
