@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>PowerShellDocker</Name>
+  <Repository>ghcr.io/krx3d/powershelldocker:latest</Repository>
+  <Registry>https://github.com/KrX3D/PowershellDocker/pkgs/container/powershelldocker</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/KrX3D/PowershellDocker/issues</Support>
+  <Project>https://github.com/KrX3D/PowershellDocker</Project>
+  <Overview>A Docker container that runs PowerShell (pwsh) with the PSWSMan/WSMan modules pre-installed, based on mcr.microsoft.com/powershell.&#13;
+&#13;
+Mount your scripts into the Scripts Path below. By default the container runs a bundled keep-alive script; set Script File to the name of a script already in your Scripts Path to run that instead. Use Extra Software to install additional apt packages when the container starts, and Fallback DNS to control the DNS server used if the container's automatic DNS resolution fails.&#13;
+&#13;
+Source, Dockerfile and entrypoint script: https://github.com/KrX3D/PowershellDocker</Overview>
+  <Category>Productivity: Tools:Utilities Other:</Category>
+  <WebUI/>
+  <TemplateURL>https://raw.githubusercontent.com/KrX3D/PowershellDocker/main/unraid-template.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/nwithan8/unraid_templates/master/images/powershell-icon.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <Requires>This container has no web UI -- it is driven entirely by environment variables and a mounted scripts folder. Place your .ps1 scripts in the Scripts Path below.</Requires>
+  <Config Name="Scripts Path" Target="/scripts" Default="/mnt/user/appdata/powershelldocker/scripts" Mode="rw" Description="Path to your PowerShell scripts directory, mounted into the container at /scripts." Type="Path" Display="always-hide" Required="true" Mask="false">/mnt/user/appdata/powershelldocker/scripts</Config>
+  <Config Name="Script File" Target="SCRIPT_FILE" Default="" Mode="" Description="Name of a .ps1 file already inside the Scripts Path to run instead of the bundled default keep-alive script (DockerDefault.ps1). Leave empty to run the default script." Type="Variable" Display="always-hide" Required="false" Mask="false"/>
+  <Config Name="Extra Software" Target="EXTRA_SOFTWARE" Default="" Mode="" Description="Space-separated list of additional apt packages to install when the container starts, e.g. 'git curl'." Type="Variable" Display="always-hide" Required="false" Mask="false"/>
+  <Config Name="Fallback DNS" Target="FALLBACK_DNS" Default="1.1.1.1" Mode="" Description="DNS server written to /etc/resolv.conf if the container's automatic DNS resolution fails at startup." Type="Variable" Display="always-hide" Required="false" Mask="false">1.1.1.1</Config>
+  <Config Name="PowerShell Telemetry Opt-Out" Target="POWERSHELL_TELEMETRY_OPTOUT" Default="1" Mode="" Description="Set to 1 (default) to disable PowerShell telemetry, or 0 to allow it." Type="Variable" Display="advanced-hide" Required="false" Mask="false">1</Config>
+</Container>

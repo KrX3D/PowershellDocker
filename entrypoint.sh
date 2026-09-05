@@ -98,7 +98,7 @@ else
 
     # Fall back to a public DNS resolver. Override with the FALLBACK_DNS
     # environment variable if your network requires a specific server.
-    FALLBACK_DNS="${FALLBACK_DNS:-1.1.1.1}"
+    FALLBACK_DNS=$(echo "${FALLBACK_DNS:-1.1.1.1}" | tr -d '"')
     echo "You may need to configure DNS manually. Falling back to $FALLBACK_DNS..."
     echo "nameserver $FALLBACK_DNS" > /etc/resolv.conf
     echo "DNS configured to $FALLBACK_DNS."
