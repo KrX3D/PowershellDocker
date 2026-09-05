@@ -6,6 +6,7 @@ services:
       - POWERSHELL_TELEMETRY_OPTOUT=1
       - EXTRA_SOFTWARE="git curl" #Optional Software to be installed
       - SCRIPT_FILE="CustomScript.ps1"  # This will override the default DockerDefault.ps1 script to be executed
+      - FALLBACK_DNS="1.1.1.1" # Optional: DNS server to fall back to if the container's automatic DNS resolution fails at startup
     volumes:
       - /mnt/user/powershell-scripts:/scripts
     restart: "no"
